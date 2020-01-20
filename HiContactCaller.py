@@ -107,7 +107,7 @@ for locus in open(peakFile): # locus line format: <chr>\t<position = center of p
 				preyStart, preyStop = (preyDist - (CAP)), (preyDist + (CAP))
 
 				if (preyDist - (CAP + DRP)) > 0:
-					expStart, expStop = max(CAP + DRP + 1,(preyDist - (CAP))), (preyDist + (CAP)) + max(0, ((CAP + DRP + 1) - (preyDist - CAP))))
+					expStart, expStop = max(CAP + DRP + 1,(preyDist - (CAP))), (preyDist + (CAP)) + max(0, ((CAP + DRP + 1) - (preyDist - CAP)))
 					robjects.r.assign("expStart",expStart)
 					robjects.r.assign("expStop", expStop)
 					z = robjects.r("seq(expStart,expStop,by=1)")
@@ -164,7 +164,7 @@ for locus in open(peakFile): # locus line format: <chr>\t<position = center of p
 				preyStart, preyStop = (preyDist - (CAP)), (preyDist + (CAP))
 
 				if (abs(preyDist) - (CAP + DRP)) > 0:
-					expStart, expStop = max(CAP + DRP + 1, (abs(preyDist) - (CAP))), (abs(preyDist) + (CAP)) + max(0,((CAP + DRP + 1) - (abs(preyDist) - CAP))))
+					expStart, expStop = max(CAP + DRP + 1, (abs(preyDist) - (CAP))), (abs(preyDist) + (CAP)) + max(0,((CAP + DRP + 1) - (abs(preyDist) - CAP)))
 					robjects.r.assign("expStart",expStart)
 					robjects.r.assign("expStop", expStop)
 					z = robjects.r("seq(expStart,expStop,by=1)")
@@ -216,7 +216,7 @@ for locus in open(peakFile): # locus line format: <chr>\t<position = center of p
 				contactProbabilities.append([chrom, position, preyChrom, preyPosition, preyDist, p_val, observed, expected])
 				pvalues.append(p_val)
 
-	counter += 1
+    counter += 1
 
 out = open(sys.argv[4], "w")
 
@@ -228,4 +228,3 @@ for prob in contactProbabilities:
     outStr = str('chr' + str(prob[0])) + "\t" + str(prob[1]) +"\t"+ str(prob[3]) +"\t"+ str(prob[4]) +"\t"+ str(prob[5]) +"\t"+ str(prob[6]) +"\t"+ str(prob[7]) +"\t"+ str(corrected[1][p_count]) +"\n"
     out.write(outStr)
     p_count += 1
-
